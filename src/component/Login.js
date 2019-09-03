@@ -11,9 +11,17 @@ import Typography from '@material-ui/core/Typography';
 import './Login.css'
 
 
-export class Login extends React.Component{
+export class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { user : "", password : ""};
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleUserChange = this.handleUserChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    }
 
-    render(){
+
+    render() {
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -22,11 +30,11 @@ export class Login extends React.Component{
                         <Avatar className="avatar">
                             <LockIcon />
                         </Avatar>
-                        <Typography variant="headline">Sign in</Typography>
-                        <form className="form">
+                        <Typography variant="h5">Sign in</Typography>
+                        <form className="form" onSubmit={this.handleSubmit} >
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="email">Email Address</InputLabel>
-                                <Input id="email" name="email" autoComplete="email" autoFocus />
+                                <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleUserChange} />
                             </FormControl>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="password">Password</InputLabel>
@@ -35,12 +43,13 @@ export class Login extends React.Component{
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
+                                    onChange={this.handlePasswordChange}
                                 />
                             </FormControl>
                             <Button
                                 type="submit"
                                 fullWidth
-                                variant="raised"
+                                variant="contained"
                                 color="primary"
                                 className="submit"
                             >
@@ -51,6 +60,26 @@ export class Login extends React.Component{
                 </main>
             </React.Fragment>
         );
+    }
+
+    handleSubmit(e) {
+        
+        if(localStorage.getItem(this.state.user) === this.state.password){
+            localStorage.setItem("isLoggedIn", true);
+        }
+    }
+
+    handleUserChange(e) {
+        this.setState({
+            user: e.target.value
+        });
+    }
+
+    handlePasswordChange(e) {
+        console.log("funciona");
+        this.setState({
+            password: e.target.value
+        });
     }
 
 }

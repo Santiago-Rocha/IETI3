@@ -1,18 +1,26 @@
 import React from 'react';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import "./Todo.css"
 
 export class Todo extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
-            <tr>
-                <td>{this.props.text}</td>
-                <td>{this.props.priority}</td>
-                <td>{this.props.dueDate.format('DD-MM-YYYY')}</td>
-            </tr>
+            <Card>
+                <CardContent>
+                    <Typography variant="h5" component="h2">
+                        Nombre: {this.props.text}
+                    </Typography>
+                    <Typography variant="h5" component="h2">
+                        Prioridad: {this.props.priority}
+                    </Typography>
+                    <Typography variant="h5" component="h2">
+                        Fecha limite: {this.props.dueDate.format('DD-MM-YYYY')}
+                    </Typography>
+                </CardContent>
+            </Card>
         );
     }
 

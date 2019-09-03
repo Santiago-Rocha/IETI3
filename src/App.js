@@ -1,50 +1,50 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'react-datepicker/dist/react-datepicker.css';
-import {TodoApp} from "./TodoApp"
+import { TodoApp } from "./TodoApp"
 import { Login } from "./component/Login";
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
+//import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
 
 class App extends Component {
 
     constructor(props) {
         super(props);
-        
-        
-        
-
+        localStorage.setItem('srd98', "clave123");
     }
 
-    
 
-
-    /*render() {
-
-        return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">TODO React App</h1>
-                </header>
-
-                <br/>
-                <br/>
-                <TodoApp/>
-                <Login/>
-            </div>
-        );
-    }*/
 
     render() {
-        const LoginView = () => (
-            <Login/>
+        /*const LoginView = () => (
+            <Login />
         );
         const TodoAppView = () => (
-            <TodoApp/>
-        );
-        return (
+            <TodoApp />
+        );]*/
+
+        if (localStorage.getItem("isLoggedIn")) {
+            return (<div className="App">
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <h1 className="App-title">TODO React App</h1>
+                </header>
+                <TodoApp />
+            </div>);
+        }
+        else {
+            return (
+                <div className="App">
+                    <header className="App-header">
+                        <img src={logo} className="App-logo" alt="logo" />
+                        <h1 className="App-title">TODO React App</h1>
+                    </header>
+                    <Login />
+                </div>
+            );
+        }
+        /*return (
             <Router>
                 <div className="App">
                     <header className="App-header">
@@ -66,10 +66,10 @@ class App extends Component {
                     </div>
                 </div>
             </Router>
-        );
+        );*/
     }
 
-    
+
 
 }
 
